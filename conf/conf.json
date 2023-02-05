@@ -1,0 +1,25 @@
+{
+  "server": {
+    "port": 8080
+  },
+  "mysql": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "db": "gin_blog",
+    "username": "root",
+    "password": "961125"
+  },
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379,
+    "db": 0,
+    "password": ""
+  },
+  "log":{
+    "level": "debug",
+    "filename": "gin_blog.log",
+    "maxsize": 500,
+    "max_age": 7,
+    "max_backups": 10
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="../static/css/blogsheet.css" rel="stylesheet">
+    <style>
+        .blog-item {
+            padding: 10px 25px;
+            background-color: #eeeeee;
+            border-bottom: 1px solid #cccaca;
+        }
+        .container-main {
+            margin-top: 100px;
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+
+{{template "nav.html" . }}
+
+
+<div class="container-main">
+    {{ range .data }}
+        <div id="home-block-item" class="blog-item">
+            <h2><a href="{{.Link}}">{{.Article.Title}}</a></h2>
+            <div>
+                <span>{{.CreateTimeStr}}</span>
+                <span>
+            {{range .TagLinks}}
+                <a href="{{.TagUrl}}">&nbsp{{.TagName}}</a>
+            {{end}}
+        </span>
+            </div>
+            <p><a href={{.Link}}>{{.Article.Short}}</a></p>
+            {{if .IsLogin}}
+                <div class="home-block-item-udpate">
+                    <a href='javascript:if(confirm("确定删除吗？")){location="{{.DeleteLink}}"}'>删除</a>
+                    <a href={{.UpdateLink}}>修改</a>
+                </div>
+            {{end}}
+        </div>
+    {{end}}
+    <div class="footer">
+        <div id="home-footer">
+            <a {{if .pageData.HasPre}}href="{{.pageData.PreLink}}" {{else}} class="disable" {{end}}>上一页</a>
+            <span>{{.pageData.ShowPage}}页</span>
+            <a {{if .pageData.HasNext}}href="{{.pageData.NextLink}}" {{else}} class="disable" {{end}}>下一页</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
